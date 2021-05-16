@@ -1,16 +1,16 @@
-import os
+import prerun
 from flask import Flask, render_template, request
 import json
 from utils.summarizer import getSummary
 
 app = Flask(__name__)
 
-@app.before_first_request
-def activate_job():
-    def run_job():    
-        os.system("bash setup.sh")
-        print(os.system("ls ./utils/saved_model/"))
-        print("server ready for requests")
+# @app.before_first_request
+# def activate_job():
+#     def run_job():    
+#         os.system("bash setup.sh")
+#         print(os.system("ls ./utils/saved_model/"))
+#         print("server ready for requests")
 
 @app.route('/')
 def home():
