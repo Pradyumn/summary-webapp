@@ -3,11 +3,12 @@ from flask import Flask, render_template, request
 import json
 from utils.summarizer import getSummary
 
-os.system("bash setup.sh")
-print(os.system("ls ./utils/saved_model/"))
-print("server ready for requests")
-
 app = Flask(__name__)
+
+with app.app_context():
+    os.system("bash setup.sh")
+    print(os.system("ls ./utils/saved_model/"))
+    print("server ready for requests")
 
 @app.route('/')
 def home():
