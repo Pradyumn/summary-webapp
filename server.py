@@ -2,6 +2,11 @@ import os
 from flask import Flask, render_template, request
 import json
 from utils.summarizer import getSummary
+
+os.system("bash setup.sh")
+print(os.system("ls ./utils/saved_model/"))
+print("server ready for requests")
+
 app = Flask(__name__)
 
 @app.route('/')
@@ -18,8 +23,5 @@ def summaryAPI():
         summary = getSummary(request_json["text"])
         return json.dumps({ "summary": summary });
 
-if __name__ == '__main__':
-    os.system("bash setup.sh")
-    print(os.system("ls ./utils/saved_model/"))
-    print("server ready for requests")
+def main():
     app.run()
