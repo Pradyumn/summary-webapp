@@ -20,4 +20,6 @@ def summaryAPI():
 
 if __name__ == '__main__':
     os.system("bash setup.sh")
+    print(os.system("ls ./utils/saved_model/"))
+    print("server ready for requests")
     app.run()
