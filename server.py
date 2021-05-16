@@ -3,10 +3,6 @@ import json
 from utils.summarizer import getSummary
 app = Flask(__name__)
 
-@app.route('/flask')
-def hello_flask():
-   return 'Hello Flask'
-
 @app.route('/')
 def home():
     return render_template('index.html')
