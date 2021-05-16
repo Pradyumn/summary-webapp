@@ -1,4 +1,4 @@
-import prerun
+# import prerun
 from flask import Flask, render_template, request
 import json
 from utils.summarizer import getSummary
