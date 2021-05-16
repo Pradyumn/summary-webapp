@@ -1,3 +1,4 @@
+import os
 from flask import Flask, render_template, request
 import json
 from utils.summarizer import getSummary
@@ -18,4 +19,5 @@ def summaryAPI():
         return json.dumps({ "summary": summary });
 
 if __name__ == '__main__':
-   app.run()
+    os.system("bash setup.sh")
+    app.run()
