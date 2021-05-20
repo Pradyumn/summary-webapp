@@ -1,16 +1,17 @@
 # import prerun
 from flask import Flask, render_template, request
 import json
+import warnings
+warnings.simplefilter(action='ignore')
 from utils.summarizer import getSummary
 
 app = Flask(__name__)
 
-# @app.before_first_request
-# def activate_job():
-#     def run_job():    
-#         os.system("bash setup.sh")
-#         print(os.system("ls ./utils/saved_model/"))
-#         print("server ready for requests")
+@app.before_first_request
+def download_model(): 
+    os.system("bash setup.sh")
+    print(os.system("ls ./utils/saved_model/"))
+    print("server ready for requests")
 
 @app.route('/')
 def home():
@@ -27,4 +28,7 @@ def summaryAPI():
         return json.dumps({ "summary": summary });
 
 def main():
-    app.run()
+    app.run(debug=True)
+
+if __name__=="__main__":
+    main()

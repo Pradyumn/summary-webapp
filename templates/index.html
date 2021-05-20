@@ -3,15 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <title>Summary App</title>
 </head>
-<body>
-    <h1>Summary Generator App</h1>
-    <button id="talk">push to talk</button>
-    <h4>Your Text</h4>
-    <p id="text"></p>
-    <h4>Summary Generated</h4>
-    <p id="summary"></p>
+<style> 
+    .box{
+        width: 100%;
+        height: 100%;            
+        position: absolute;
+        top: 0;
+        left: 0;
+        opacity: 0.8; 
+    }
+    .stack-top{
+        z-index: 9;
+        margin: 20px; 
+    }
+</style>
+<body style="background-color: #f5f5f5;">
+    <div class="container text-center" style="position: relative;">
+        <div class="row align-items-center" style="height: 100vh; position: absolute; top: 0; left: 0;  width: 100%;">
+            <div class="row justify-content-center">
+                <div class="row mb-4 justify-content-center">
+                    <div style="background-color: #444; padding: 15px; height: 80px; width: 80px; border-radius: 50%;">
+                        <i class="material-icons" style="font-size: 50px; color: #fff;">comment</i>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <h2>Speech to Summary</h2>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-4">
+                        <div class="input-group mb-3">
+                            <span class="input-group-text">Your Text</span>
+                            <textarea class="form-control" id="text" style="resize: none;"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-4 align-items-center">
+                        <div class="input-group mb-4">
+                            <span class="input-group-text">Summary</span>
+                            <textarea class="form-control" id="summary" style="resize: none;"></textarea>
+                        </div>
+                    </div>
+                </div>
+                <div class="row justify-content-center">
+                    <div class="col-4 text-center">
+                        <div class="btn-group text-center" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-outline-dark" id="talk">Push to Talk</button>
+                            <button type="button" class="btn btn-outline-success" id="summarize">Summarize</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row align-items-center" id="loader" style="height: 100vh; opacity: 0.6; position: absolute; width: 100%; top: 0; left: 0; z-index: 9; background-color: #f5f5f5; display: none;">
+            <div class="row justify-content-center">
+                <div class="spinner-grow text-primary" role="status">
+                    <span class="sr-only"></span>
+                </div>
+                <div class="spinner-grow text-secondary" role="status">
+                    <span class="sr-only"></span>
+                </div>
+                <div class="spinner-grow text-success" role="status">
+                    <span class="sr-only"></span>
+                </div>
+                <div class="spinner-grow text-danger" role="status">
+                    <span class="sr-only"></span>
+                </div>
+                <div class="spinner-grow text-warning" role="status">
+                    <span class="sr-only"></span>
+                </div>
+                <div class="spinner-grow text-info" role="status">
+                    <span class="sr-only"></span>
+                </div>
+                <div class="spinner-grow text-dark" role="status">
+                    <span class="sr-only"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/35428e784f.js"></script>
     <script type="text/javascript" src="{{ url_for('static', filename='script.js') }}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4" crossorigin="anonymous"></script>
 </body>
 </html>

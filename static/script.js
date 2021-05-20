@@ -1,11 +1,14 @@
-const btn = document.getElementById("talk");
+const talkBtn = document.getElementById("talk");
+const summBtn = document.getElementById("summarize");
 const textField = document.getElementById("text");
+const loader = document.getElementById("loader");
 const summaryField = document.getElementById("summary");
 
 const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
 const recognition = new SpeechRecognition();
 
 const getSummary = async (text) => {
+    loader.style.display = "";
     let cleanedText = text.toLowerCase();
     cleanedText = cleanedText.replaceAll(/[0-9]+/g, "#");
     cleanedText = cleanedText.replaceAll(/[,.]/g, "");
@@ -18,7 +21,8 @@ const getSummary = async (text) => {
     });
 
     const  { summary } = await res.json();
-    summaryField.innerText = summary;
+    summaryField.value = summary;
+    loader.style.display = "none";
 }
 
 recognition.onstart = () => {
@@ -28,10 +32,14 @@ recognition.onstart = () => {
 recognition.onresult = (event) => {
     const current = event.resultIndex;
     const transcript = event.results[current][0].transcript;
-    textField.innerText = transcript;
-    getSummary(transcript);
+    textField.value = transcript;
 };
 
-btn.addEventListener("click", () => {
+talkBtn.addEventListener("click", () => {
     recognition.start();
+});
+
+summBtn.addEventListener("click", () => {
+    const transcript = textField.value;
+    getSummary(transcript);
 });
