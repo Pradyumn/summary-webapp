@@ -9,8 +9,8 @@ app = Flask(__name__)
 
 @app.before_first_request
 def download_model(): 
-    os.system("bash setup.sh")
-    print(os.system("ls ./utils/saved_model/"))
+    # os.system("bash setup.sh")
+    # print(os.system("ls ./utils/saved_model/"))
     print("server ready for requests")
 
 @app.route('/')
