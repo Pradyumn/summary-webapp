@@ -28,4 +28,4 @@ def summaryAPI():
         return json.dumps({ "summary": summary });
 
 def main():
-    app.run(debug=True)0
+    app.run()
