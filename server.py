@@ -20,14 +20,15 @@ def home():
 @app.route('/summary', methods = ['POST', 'GET'])
 def summaryAPI():
     if request.method == 'POST':
-        return json.dumps({ "summary": "This is fake summary})
-        # request_data = request.data.decode("utf-8")
-        # request_json = json.loads(request_data)
-        # print(request_json["text"])
-        # print(type(request_json["text"]))
-        # summary = getSummary(request_json["text"])
-        # return json.dumps({ "summary": summary })
+        request_data = request.data.decode("utf-8")
+        request_json = json.loads(request_data)
+        print(request_json["text"])
+        print(type(request_json["text"]))
+        summary = getSummary(request_json["text"])
+        return json.dumps({ "summary": summary })
 
 def main():
-    # os.system("bash setup.sh")
     app.run()
+
+if __name__ == "__main__":
+    main()
