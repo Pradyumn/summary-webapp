@@ -29,14 +29,16 @@ recognition.onstart = () => {
     console.log("Listening"); 
 };
 
+recognition.addEventListener('end', recognition.start);
+
 recognition.onresult = (event) => {
     const current = event.resultIndex;
     const transcript = event.results[current][0].transcript;
-    textField.value = transcript;
+    textField.value += " " + transcript;
 };
 
 talkBtn.addEventListener("click", () => {
-    recognition.start();
+    recognition.start();        
 });
 
 summBtn.addEventListener("click", () => {
